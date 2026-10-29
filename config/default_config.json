@@ -1,0 +1,60 @@
+{
+  "admin_password_hash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+  "tcp": {
+    "host": "127.0.0.1",
+    "port": 1024,
+    "buffer_size": 4096,
+    "keep_alive_seconds": 10,
+    "max_clients": 5
+  },
+  "database": {
+    "user": "BRIDGE_USER",
+    "password": "",
+    "dsn": "oracle.example.invalid:1521/EXAMPLEPDB",
+    "schema": "BRIDGE_USER",
+    "table": "SMART3_RESULTS"
+  },
+  "protocol": {
+    "separator": ",",
+    "encoding": "utf-8",
+    "message_terminator": "",
+    "max_message_bytes": 65536
+  },
+  "field_mapping": [
+    {
+      "index": 0,
+      "column": "barcode",
+      "required": true
+    },
+    {
+      "index": 1,
+      "column": "image_path",
+      "required": false
+    },
+    {
+      "index": 2,
+      "column": "result_code",
+      "required": false
+    },
+    {
+      "index": 3,
+      "column": "employee_id",
+      "required": false
+    },
+    {
+      "index": 4,
+      "column": "station_id",
+      "required": false
+    },
+    {
+      "index": 5,
+      "column": "event_date_str",
+      "required": false
+    },
+    {
+      "index": 6,
+      "column": "event_time_str",
+      "required": false
+    }
+  ]
+}
