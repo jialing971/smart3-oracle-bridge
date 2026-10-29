@@ -137,7 +137,7 @@ index 6 -> event_time_str 可选
 
 `build.bat` 会通过 `pip` 安装/更新 `requirements.txt` 中的依赖和 PyInstaller，然后按 `build.spec` 生成 `dist/FormassyBridge/` 与发布 ZIP。该脚本会修改当前 Python 环境，属于用户手动可选操作。
 
-本次源码发布**没有**验证打包产物；本次使用的内置 Python 运行时导入 PyInstaller 时缺少可用的 `pywin32-ctypes`，不能据此声称 EXE 已通过测试。公开版脚本不复制运行配置，并在压缩前检查目标目录是否残留 `config/config.json` 或 `logs/`；发现时中止，不删除这些文件。打包后仍需检查 `dist`，确认模板未被填入真实凭据，且不含其他敏感文件。发布目录的使用说明与启动脚本见 `release/`。
+本次源码发布**没有**验证打包产物；本次使用的内置 Python 运行时导入 PyInstaller 时缺少可用的 `pywin32-ctypes`，不能据此声称 EXE 已通过测试。公开版脚本不复制运行配置，并在安装依赖和调用 PyInstaller **之前**检查目标目录是否残留 `config/config.json` 或 `logs/`；发现时中止，不删除这些文件。打包后仍需检查 `dist`，确认模板未被填入真实凭据，且不含其他敏感文件。发布目录的使用说明与启动脚本见 `release/`。
 
 ## 文档
 

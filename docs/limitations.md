@@ -73,7 +73,7 @@
 - 本次发布没有运行 `build.bat`，没有验证 `dist/FormassyBridge/` 或发布 ZIP 的可用性。
 - 本次使用的内置 Python 运行时导入 PyInstaller 时，提示缺少可用的 `pywin32-ctypes`，因此不能声称 EXE 打包已通过。
 - `build.spec` 使用 `collect_all` 收集 oracledb 和 cryptography 的数据/二进制；不同版本组合下的打包结果未验证。
-- 已从 `build.bat` 删除复制 `config/config.json` 的步骤；压缩前若目标目录存在运行配置或 `logs/`，脚本会中止并保留原文件。模板被手工写入真实凭据或其他路径含有敏感文件的情况仍须人工检查。历史 ZIP 不会因为本次中止自动移除，不应继续分发。
+- 已从 `build.bat` 删除复制 `config/config.json` 的步骤；安装依赖和调用 PyInstaller 之前，若目标目录存在运行配置或 `logs/`，脚本会中止并保留原文件，避免 PyInstaller 清空旧输出。构建期间不要同时运行输出目录内的程序。模板被手工写入真实凭据或其他路径含有敏感文件的情况仍须人工检查。历史 ZIP 不会因为本次中止自动移除，不应继续分发。
 
 ## 7. 兼容性
 

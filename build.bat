@@ -12,6 +12,18 @@ REM 留空=使用当前 PATH 中的 python；或指定完整路径，例如：
 REM set "PYTHON=D:\anaconda3\python.exe"
 set "PYTHON="
 
+set "OUT=%~dp0dist\FormassyBridge"
+REM Refuse to archive or rebuild a directory used to run the application.
+if exist "%OUT%\config\config.json" (
+    echo ERROR: Runtime config found in output. Build cancelled. Keep it private.
+    exit /b 1
+)
+if exist "%OUT%\logs" (
+    echo ERROR: Runtime logs found in output. Build cancelled. Keep them private.
+    exit /b 1
+)
+REM End private-output check.
+
 if not "%PYTHON%"=="" (
     set "PY=%PYTHON%"
 ) else (
@@ -45,7 +57,6 @@ if errorlevel 1 (
     exit /b 1
 )
 
-set "OUT=%~dp0dist\FormassyBridge"
 if not exist "%OUT%\FormassyBridge.exe" (
     echo 未找到 %OUT%\FormassyBridge.exe
     pause
@@ -61,15 +72,6 @@ copy /Y "%~dp0release\启动 FormassyBridge.bat" "%OUT%\"
 
 echo.
 echo [4/5] Create ZIP...
-REM Refuse to archive a directory that was used to run the application.
-if exist "%OUT%\config\config.json" (
-    echo ERROR: Runtime config found in output. Archive cancelled. Keep it private.
-    exit /b 1
-)
-if exist "%OUT%\logs" (
-    echo ERROR: Runtime logs found in output. Archive cancelled. Keep them private.
-    exit /b 1
-)
 set "ZIP=%~dp0dist\FormassyBridge-release.zip"
 if exist "%ZIP%" del /F /Q "%ZIP%"
 powershell -NoProfile -Command "Compress-Archive -Path '%OUT%\*' -DestinationPath '%ZIP%' -Force"
